@@ -86,6 +86,17 @@ VALUES
     (12, 'どいつ');
 ```
 
+### 整列
+```SQL
+SELECT * FROM kanji_kana ORDER BY text;
+
+-- ロケール無効版
+SELECT * FROM kanji_kana ORDER BY text USNING ~<~;
+
+--　日本語ロケール強制版
+SELECT * from kanji_kana ORDER BY text COLLATE "ja-x-icu";
+```
+
 ## 整列演算（選択演算との組み合わせ）
 
 ```SQL
