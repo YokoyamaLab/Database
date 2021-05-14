@@ -5,16 +5,16 @@
 ## 講義例題データベース作成
 
 
-### vinayrdテーブル作成
+### vineyardテーブル作成
 ```SQL
 CREATE TABLE vineyard(
     dID VARCHAR(4) PRIMARY KEY, 
     district VARCHAR(30)
 );
 ```
-### vinayrdデータ流し込み
+###vineyardデータ流し込み
 ```SQL
-INSERT INTO vinyard(dID,district)
+INSERT INTO vineyard(dID,district)
 VALUES
     ('A','ブルゴーニュ'),
     ('B','ボルドー'),
