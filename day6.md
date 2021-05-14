@@ -65,25 +65,41 @@ SELECT wid,name FROM wine ORDER BY name DESC;
 
 ```SQL
 CREATE TABLE kanji_kana(
-  id SMALLINT PRIMARY KEY,
-  text VARCHAR(10)
+    id SMALLINT PRIMARY KEY,
+    text VARCHAR(10)
 );
 
 -- idの数値を自分がソートの結果出てくるであろう順番に付け替えてみると面白いかもしれません。
 INSERT INTO kanji_kana(id,text)
 VALUES
-  (1, 'アメリカ'),
-  (2, 'あめりか'),
-  (3, '亜米利加'),
-  (4, 'ふらんす'),
-  (5, 'フランス'),
-  (6, '仏蘭西'),
-  (7, '伊太利'),
-  (8, 'イタリア'),
-  (9, 'いたりあ'),
-  (10, '独逸'),
-  (11, 'ドイツ'),
-  (12, 'どいつ');
+    (1, 'アメリカ'),
+    (2, 'あめりか'),
+    (3, '亜米利加'),
+    (4, 'ふらんす'),
+    (5, 'フランス'),
+    (6, '仏蘭西'),
+    (7, '伊太利'),
+    (8, 'イタリア'),
+    (9, 'いたりあ'),
+    (10, '独逸'),
+    (11, 'ドイツ'),
+    (12, 'どいつ');
 ```
 
-## 
+## 整列演算（選択演算との組み合わせ）
+
+```SQL
+SELECT * FROM wine
+    WHERE price < 3000 AND price >= 2200
+    ORDER BY price DESC;
+```
+
+## 集約演算(全行)
+
+```SQL
+-- 全ワインの平均価格
+SELECT avg(price) FROM wine;
+
+-- 全ワインの平均価格(四捨五入)
+SELECT round(avg(price))  FROM wine;
+```
