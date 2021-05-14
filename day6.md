@@ -105,7 +105,7 @@ SELECT * FROM wine
     ORDER BY price DESC;
 ```
 
-## 集約演算(全行)
+## 集約演算(全行)  ～ 例１
 
 ```SQL
 -- 全ワインの平均価格
@@ -113,4 +113,56 @@ SELECT avg(price) FROM wine;
 
 -- 全ワインの平均価格(四捨五入)
 SELECT round(avg(price))  FROM wine;
+```
+
+## 集約演算(全行) ～ 例２
+```SQL
+SELECT string_agg(name, ’,’)  FROM wine;
+```
+
+## 集約演算 ～ 産地別平均価格
+
+```SQL
+SELECT did, round(avg(price)) FROM wine 
+   GROUP BY did;
+```
+
+## 集約＆整列演算 ～ 産地別平均価格(降順)
+```SQL
+SELECT did, round(avg(price)) FROM wine 
+   GROUP BY did
+   ORDER BY price DESC;
+```
+* その２
+```SQL
+SELECT did, round(avg(price)) FROM wine 
+   GROUP BY did
+   ORDER BY round DESC;
+```
+
+## 集約&整列&リネーム演算
+```SQL
+SELECT did, round(avg(price)) AS price 
+   FROM wine 
+   GROUP BY did ORDER BY price DESC;
+```
+
+## 集約&整列&リネーム演算 ～ 例2
+
+* 安価なワインの産地別平均価格(降順)を得たい
+
+### 安価＝ワインの価格が4000円未満=安価なワイン
+ 
+ ```SQL
+SELECT did, round(avg(price)) FROM wine 
+    WHERE price < 4000 GROUP BY did 
+    ORDER BY round DESC;
+```
+ 
+### 安価＝産地平均価格が4000円未満=安価な産地
+
+```SQL
+SELECT did, round(avg(price)) FROM wine 
+   GROUP BY did HAVING avg(price) < 4000
+   ORDER BY round DESC;
 ```
