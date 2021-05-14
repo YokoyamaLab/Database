@@ -97,6 +97,14 @@ SELECT * FROM kanji_kana ORDER BY text USNING ~<~;
 SELECT * from kanji_kana ORDER BY text COLLATE "ja-x-icu";
 ```
 
+## 日付とロケール
+
+```SQL
+SELECT to_char(NOW(),'TMMonth'),to_char(NOW(), 'Month');  
+```
+
+
+
 ## 整列演算（選択演算との組み合わせ）
 
 ```SQL
