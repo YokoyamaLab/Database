@@ -22,7 +22,7 @@ SELECT * FROM wine_list;
 ```SQL
 INSERT INTO wine_list 
 VALUES(   
-	1000
+	1000,
 	'コンチャ・イ・トロ',  
 	'チリ',  
 	980);
