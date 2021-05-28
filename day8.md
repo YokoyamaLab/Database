@@ -54,8 +54,8 @@ CREATE TRIGGER trigger_insert_wine_list
 INSERT INTO wine_list 
 VALUES(
    (SELECT MAX(wid)+1 FROM wine),
-   ‘コンチャ・イ・トロ’,
-   ‘チリ’,
+   'コンチャ・イ・トロ',
+   'チリ',
    980
 );
 ```
