@@ -17,6 +17,17 @@ CREATE VIEW wine_list AS
 SELECT * FROM wine_list;
 ```
 
+## Viewに試しに挿入してみる。
+
+```SQL
+INSERT INTO wine_list 
+VALUES(   
+	1000
+	'コンチャ・イ・トロ',  
+	'チリ',  
+	980);
+```
+
 ## Viewを挿入可能にする
 
 * ワインテーブルへ挿入する関数
