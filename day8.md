@@ -33,18 +33,17 @@ VALUES(
 * ワインテーブルへ挿入する関数
 
 ```SQL
-CREATE FUNCTION function_insert_wine_list()
-   RETURNS TRIGGER
-   AS $$ 
-      BEGIN
-         INSERT INTO wine 
-            VALUES(
-               NEW.wid,
-               NEW.name,
-               (SELECT did FROM vineyard WHERE district = NEW.district),
-               NEW.price);
-      END;
-   $$ LANGUAGE plpgsql;
+CREATE OR REPLACE FUNCTION function_insert_wine_list() RETURNS TRIGGER AS $$
+BEGIN
+	INSERT INTO wine 
+		VALUES(
+    		NEW.wid,
+    		NEW.name,
+     		(SELECT did FROM vineyard WHERE district = NEW.district),
+       		NEW.price);
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
 ```
 
 * wine_listビューへのINSERT操作時に発火するトリガ
@@ -77,4 +76,8 @@ VALUES(
 SELECT * FROM wine_list;
 ```
 
-* Wineテーブルは
+* Wineテーブルはどうですか？
+
+```SQL
+SELECT * FROM wine;
+```
