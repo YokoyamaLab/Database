@@ -76,3 +76,5 @@ VALUES(
 ```SQL
 SELECT * FROM wine_list;
 ```
+
+* Wineテーブルは
