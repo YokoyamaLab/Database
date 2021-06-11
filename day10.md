@@ -136,13 +136,13 @@ WHERE zip < 1910065 AND zip > 1910000;
 * インデクス無し
 ```SQL
 EXPLAIN SELECT * FROM zipcode 
-WHERE addr3 =’旭が丘’;
+WHERE addr3 = '旭が丘';
 ```
 
 * インデクス有り
 ```SQL
 EXPLAIN SELECT * FROM zipcode2
-WHERE addr3 =’旭が丘’;
+WHERE addr3 = '旭が丘';
 ```
 
 ### 効果測定4 hash &部分一致検索
@@ -150,13 +150,13 @@ WHERE addr3 =’旭が丘’;
 * インデクス無し
 ```SQL
 EXPLAIN SELECT * FROM zipcode 
-WHERE addr3 LIKES ’%が%’;
+WHERE addr3 LIKE '%が%';
 ```
 
 * インデクス有り
 ```SQL
 EXPLAIN SELECT * FROM zipcode2 
-WHERE addr3 LIKES ’%が%’;
+WHERE addr3 LIKE '%が%';
 ```
 
 ### 効果測定5 整数値のソート
