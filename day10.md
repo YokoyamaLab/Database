@@ -159,3 +159,16 @@ EXPLAIN SELECT * FROM zipcode2
 WHERE addr3 LIKES ’%が%’;
 ```
 
+### 効果測定5 整数値のソート
+
+* インデクス無し
+```SQL
+EXPLAIN SELECT * FROM zipcode 
+ORDER BY zip DESC;
+```
+
+* インデクス有り
+```SQL
+EXPLAIN SELECT * FROM zipcode2 
+ORDER BY zip DESC;
+```
