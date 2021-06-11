@@ -21,13 +21,13 @@ CREATE TABLE zipcode2(
 ### zipにbtreeインデクス
 ```sql
 CREATE INDEX idx_zipcode2_zip
-   ON zipcode2　
+   ON zipcode2
    USING btree (zip);
 ```
 
 ### addr3にhashインデクス
 ```sq;
 CREATE INDEX idx_zipcode2_addr3
-   ON zipcode2　
+   ON zipcode2
    USING hash (addr3);
 ```
