@@ -6,14 +6,14 @@
 CREATE TABLE zipcode(
   zip int,
   addr1 varchar(20),
-  addr1 varchar(20),
-  addr1 varchar(100)
+  addr2 varchar(20),
+  addr3 varchar(100)
 );
 CREATE TABLE zipcode2(
   zip int,
   addr1 varchar(20),
-  addr1 varchar(20),
-  addr1 varchar(100)
+  addr2 varchar(20),
+  addr3 varchar(100)
 );
 ```
 ##　インデクス作成
