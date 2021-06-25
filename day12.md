@@ -28,6 +28,7 @@ set ENABLE_HASHJOIN to on;
 
 ## JOINを試してみよう4
 
+## 4-1
 
 ```SQL
 EXPLAIN
@@ -35,6 +36,33 @@ SELECT zipcode.zip
 FROM zipcode JOIN zipcode2 
 ON zipcode.zip = zipcode.zip;
 ```
+
+## 4-2
+
+```SQL
+EXPLAIN
+SELECT zipcode.zip 
+FROM zipcode JOIN zipcode2 
+ON zipcode.addr3 = zipcode.addr3;
+```
+## 4-3
+
+```SQL
+EXPLAIN
+SELECT zipcode.zip 
+FROM zipcode JOIN zipcode2 
+ON zipcode.addr2 = zipcode.addr2;
+```
+
+## 4-4
+
+```SQL
+EXPLAIN
+SELECT zipcode.zip 
+FROM zipcode JOIN zipcode2 
+ON zipcode.addr1 = zipcode.addr1;
+```
+
 
 ## オプティマイズ － 別の例
 
