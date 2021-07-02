@@ -74,7 +74,7 @@ START TRANSACTION;
 SELECT * FROM wine WHERE wid = 2 FOR UPDATE; 
 SELECT * FROM wine WHERE wid = 1 FOR UPDATE;
 
---端末A：wid=1の価格を更新しコミット
+--端末A：wid=1の価格を更新しコミット(端末AとB両方見えてる状態で実行するとよい)
 UPDATE wine SET price = 100000 WHERE wid = 1;
 COMMIT;
 
