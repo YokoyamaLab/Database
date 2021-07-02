@@ -26,7 +26,7 @@ SELECT * FROM wine;
 START TRANSACTION;
 
 --端末A：wineテーブル一行追加
-INSERT INTO wine VALUES(8,’ミュスカデ’,’C’,2100);
+INSERT INTO wine VALUES(8,'ミュスカデ','C',2100);
 
 --端末A：1行加わっているか確認する
 SELECT * FROM wine;
@@ -100,11 +100,4 @@ LOCK vineyard IN ACCESS EXCLUSIVE MODE;
 
 --端末B
 LOCK wine IN ACCESS EXCLUSIVE MODE;
-```
-
-
-
-
-
-
 ```
