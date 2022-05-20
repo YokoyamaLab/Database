@@ -48,4 +48,4 @@ VALUES
 
 ## 講義サポートページ
 
-* [Day06](day06.md)
+* [Day06](day6.html)
