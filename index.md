@@ -49,3 +49,4 @@ VALUES
 ## 講義サポートページ
 
 * [Day06サポートページ](day6.html)
+* [Day08サポートページ](day8.html)
