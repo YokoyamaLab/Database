@@ -81,3 +81,34 @@ SELECT * FROM wine_list;
 ```SQL
 SELECT * FROM wine;
 ```
+
+## データ制御
+
+### ユーザの作成とログイン
+
+```SQL
+CREATE USER ore PASSWORD ‘oreore’;
+```
+* Postgresから抜ける
+```SQL
+\q
+```
+*新しいユーザでログイン(以下はLinuxコマンドラインの場合)、Windowsの場合は新しくPostgresの端末を立ち上げ、oreのユーザ名とパスワードで入る。
+```SQL
+psql –d dbsys –U ore
+```
+
+### ユーザoreに権限がない事を確かめてみる。
+```SQL
+SELECT * FROM wine_list;
+```
+
+### oreにSELECTとINSERTの権限を付与する（Postgresユーザでやる必要があります）
+```SQL
+GRANT SELECT,INSERT ON wine_list TO ore;
+```
+
+### ユーザoreに権限が付与された事を確認する。
+```SQL
+SELECT * FROM wine_list;
+```
