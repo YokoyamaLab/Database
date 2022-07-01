@@ -2,9 +2,20 @@
 
 ## 準備
 
-今日はwineテーブル、Vinyardテーブルの他に、Day11で作ったzipcodeテーブルを利用します。大学のPCを使っている人は準備をしてください。
+今日はwineテーブル、Vinyardテーブル、wine_listビューの他に、Day11で作ったzipcode、zipcode2テーブルを利用します。大学のPCを使っている人は準備をしてください。
 
-* [Day11サポートページ](day11.md)
+* Wineテーブル、Vinyardテーブル
+    * [メインページ参照の事](index.md)
+
+* wine_listビュー
+```
+CREATE VIEW wine_list AS
+   SELECT wid, name, district, price
+      FROM wine JOIN vineyard 
+      ON wine.did = vineyard.did;
+```
+* zipcode、zipcode2テーブル
+    * [Day11サポートページ](day11.md)
 
 ## JOINを試してみよう1～3
 
