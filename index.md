@@ -52,3 +52,4 @@ VALUES
 * [Day08サポートページ](day8.md)
 * [Day11サポートページ](day11.md)
 * [Day12サポートページ](day12.md)
+* [Day13サポートページ](day13.md)
