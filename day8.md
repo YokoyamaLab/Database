@@ -87,7 +87,7 @@ SELECT * FROM wine;
 ### ユーザの作成とログイン
 
 ```SQL
-CREATE USER ore PASSWORD ‘oreore’;
+CREATE USER ore PASSWORD 'oreore';
 ```
 * Postgresから抜ける
 ```SQL
