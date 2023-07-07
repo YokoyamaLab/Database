@@ -51,7 +51,7 @@ set ENABLE_HASHJOIN to on;
 EXPLAIN
 SELECT zipcode.zip 
 FROM zipcode JOIN zipcode2 
-ON zipcode.zip = zipcode.zip;
+ON zipcode.zip = zipcode2.zip;
 ```
 
 ## 4-2
@@ -60,7 +60,7 @@ ON zipcode.zip = zipcode.zip;
 EXPLAIN
 SELECT zipcode.zip 
 FROM zipcode JOIN zipcode2 
-ON zipcode.addr3 = zipcode.addr3;
+ON zipcode.addr3 = zipcode2.addr3;
 ```
 ## 4-3
 
@@ -68,7 +68,7 @@ ON zipcode.addr3 = zipcode.addr3;
 EXPLAIN
 SELECT zipcode.zip 
 FROM zipcode JOIN zipcode2 
-ON zipcode.addr2 = zipcode.addr2;
+ON zipcode.addr2 = zipcode2.addr2;
 ```
 
 ## 4-4
@@ -77,7 +77,7 @@ ON zipcode.addr2 = zipcode.addr2;
 EXPLAIN
 SELECT zipcode.zip 
 FROM zipcode JOIN zipcode2 
-ON zipcode.addr1 = zipcode.addr1;
+ON zipcode.addr1 = zipcode2.addr1;
 ```
 
 
