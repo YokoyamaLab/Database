@@ -4,7 +4,6 @@
 
 ## 講義例題データベース作成
 
-
 ### vineyardテーブル作成
 ```SQL
 CREATE TABLE vineyard(
