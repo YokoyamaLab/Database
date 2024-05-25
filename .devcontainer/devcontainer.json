@@ -1,0 +1,7 @@
+{
+  "name": "TMU L0119",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "psql -h db -p 5432 -U postgres -d postgres -f init.sql"
+}
