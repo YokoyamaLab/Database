@@ -35,12 +35,7 @@ VALUES(
 ```SQL
 CREATE OR REPLACE FUNCTION function_insert_wine_list() RETURNS TRIGGER AS $$
 BEGIN
-	INSERT INTO wine 
-		VALUES(
-    		NEW.wid,
-    		NEW.name,
-     		(SELECT did FROM vineyard WHERE district = NEW.district),
-       		NEW.price);
+　　     -- ここにINSERT文が入ります。自分で考えよう
 	RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
