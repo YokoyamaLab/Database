@@ -61,7 +61,7 @@ show client_encoding;
 ```
 
 ```sql
-\copy zipcode2 from 'c:\zipcode\zipcode_SJIS.csv' with csv;
+\copy zipcode2 from 'c:\zipcode\zipcode_UTF8.csv' with csv;
 ```
 
 * ***COPY 124523***と出てきたら成功!
