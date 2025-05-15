@@ -1,5 +1,5 @@
 # データベース 講義内利用DB初期化スクリプト
-[戻る](README.md)
+[戻る](index.md)
 
 ## MySQL　および　PostgreSQL　データベース構築スクリプト
 ```sql

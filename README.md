@@ -4,7 +4,7 @@
 
 ## 講義例題データベース作成
 
-[MySQLおよびPostgreSQL初期化スクリプト](_init.md)
+[MySQLおよびPostgreSQL初期化スクリプト](init.md)
 
 ## 講義内問い合わせスクリプト
 
