@@ -3,8 +3,11 @@
 
 ## MySQL　および　PostgreSQL　データベース構築スクリプト
 ```sql
--- データベースを本講義用のものへ切替
+-- データベースを本講義用のものへ切替(MySQL)
 USE fri5database;
+
+-- データベースを本講義用のものへ切替(PostgreSQL)
+\connect データベース名
 
 -- もし同名のテーブルが存在していたら消す(リフレッシュ用)
 DROP TABLE IF EXISTS cart,blend_recipe,blender,beans,user,barista,roast,origin;
@@ -74,11 +77,11 @@ CREATE TABLE beans(
     beans           varchar(50) UNIQUE,
     price           int,
     id_origin       char(2),
-    acidity         tinyint CHECK (acidity BETWEEN 0 AND 5),
-    bitterness      tinyint CHECK (bitterness BETWEEN 0 AND 5),
-    sweetness       tinyint CHECK (sweetness BETWEEN 0 AND 5),
-    richness        tinyint CHECK (richness BETWEEN 0 AND 5),
-    aroma           tinyint CHECK (aroma BETWEEN 0 AND 5),
+    acidity         smallint CHECK (acidity BETWEEN 0 AND 5),
+    bitterness      smallint CHECK (bitterness BETWEEN 0 AND 5),
+    sweetness       smallint CHECK (sweetness BETWEEN 0 AND 5),
+    richness        smallint CHECK (richness BETWEEN 0 AND 5),
+    aroma           smallint CHECK (aroma BETWEEN 0 AND 5),
     FOREIGN KEY (id_origin) REFERENCES origin(id_origin) 
 );
 
