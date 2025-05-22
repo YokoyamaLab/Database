@@ -56,13 +56,13 @@ INSERT INTO barista VALUES
 
 
 -- ユーザ
-CREATE TABLE user(
+CREATE TABLE "user"(
     id_user         int PRIMARY KEY,
     name            varchar(50),
     address         varchar(50)
 );
 
-INSERT INTO user VALUES
+INSERT INTO "user" VALUES
 (1,	'山田 太郎',	'横浜市'),
 (2,	'鈴木 花子',	'札幌市'),
 (3, '佐藤 次郎',    '浜松市');
