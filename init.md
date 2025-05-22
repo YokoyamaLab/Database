@@ -7,7 +7,7 @@
 USE fri5database;
 
 -- データベースを本講義用のものへ切替(PostgreSQL)
-\connect データベース名
+\connect fri5database
 
 -- もし同名のテーブルが存在していたら消す(リフレッシュ用)
 DROP TABLE IF EXISTS cart,blend_recipe,blender,beans,user,barista,roast,origin;
