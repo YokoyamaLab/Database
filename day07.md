@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/d0083684-6bfb-46e7-8706-22878c515bb1)![image](https://github.com/user-attachments/assets/4d35fd4a-db4a-4e51-afd2-585f3b8a3263)# データベース Day 07
+# データベース Day 07
 
 ## 前回宿題
 
