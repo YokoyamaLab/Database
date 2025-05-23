@@ -4,8 +4,9 @@
 
 ## 講義例題データベース作成
 
-[MySQLおよびPostgreSQL初期化スクリプト](init.md)
+* [MySQLおよびPostgreSQL初期化スクリプト](init.md)
 
 ## 講義内問い合わせスクリプト
 
-[Day06 基本的な問い合わせ](day06.md)
+* [Day06 基本的な問い合わせ](day06.md)
+* [Day07 応用的な問い合わせ](day07.md)
