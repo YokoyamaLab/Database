@@ -240,3 +240,64 @@ db.review.insertMany([
 {"user": {"id": 5, "name": "レビュアー5", "genderAge": "M3"}, "star": 4, "keywords": ["苦味", "余韻"], "review": "このコーヒーは苦味が特徴で、余韻が楽しめます。", "timestamp": {"$date": "2023-11-02T00:00:00Z"}, "beans": "ブルーマウンテンピーベリー", "id_beans": 11},
 ]);
 ```
+
+### Neo4J　データベース構築クエリ
+
+```Cypher
+CREATE (:Origin {id: 'HW', name: 'ハワイ'}),
+       (:Origin {id: 'JM', name: 'ジャマイカ'}),
+       (:Origin {id: 'YE', name: 'イエメン'}),
+       (:Origin {id: 'CO', name: 'コロンビア'}),
+       (:Origin {id: 'ID', name: 'インドネシア'}),
+       (:Origin {id: 'KE', name: 'ケニア'}),
+       (:Origin {id: 'TZ', name: 'タンザニア'}),
+       (:Origin {id: 'ET', name: 'エチオピア'});
+
+UNWIND ['酸味', '苦味', '甘味', 'コク', '香り'] AS flavor
+UNWIND range(1,5) AS level
+MERGE (:FlavorProfile {type: flavor, level: level});
+
+WITH [
+  {id: 1, name: 'ハワイコナファンシー', price: 3500, origin: 'HW', acidity: 5, bitterness: 2, sweetness: 4, richness: 4, aroma: 5},
+  {id: 2, name: 'ブルーマウンテンNo.1', price: 2000, origin: 'JM', acidity: 2, bitterness: 1, sweetness: 5, richness: 3, aroma: 5},
+  {id: 3, name: 'モカマタリ', price: 800, origin: 'YE', acidity: 4, bitterness: 3, sweetness: 4, richness: 4, aroma: 5},
+  {id: 4, name: 'エメラルドマウンテン', price: 700, origin: 'CO', acidity: 2, bitterness: 1, sweetness: 5, richness: 5, aroma: 5},
+  {id: 5, name: 'マンデリンＧ１', price: 600, origin: 'ID', acidity: 2, bitterness: 5, sweetness: 3, richness: 4, aroma: 3},
+  {id: 6, name: 'ケニアAA', price: 590, origin: 'KE', acidity: 5, bitterness: 1, sweetness: 3, richness: 5, aroma: 4},
+  {id: 7, name: 'ジャバロブスタ', price: 630, origin: 'ID', acidity: 1, bitterness: 5, sweetness: 1, richness: 3, aroma: 1},
+  {id: 8, name: 'キリマンジャロＡＡ', price: 410, origin: 'TZ', acidity: 5, bitterness: 2, sweetness: 4, richness: 4, aroma: 4},
+  {id: 9, name: 'にがにがブレンド', price: 620, origin: null, acidity: 2, bitterness: 5, sweetness: 3, richness: 4, aroma: 4},
+  {id:10, name: '阿弗利加の風', price: 500, origin: null, acidity: 5, bitterness: 2, sweetness: 4, richness: 5, aroma: 4},
+  {id:11, name: 'ブルーマウンテンピーベリー', price: 2500, origin: 'JM', acidity: 3, bitterness: 1, sweetness: 5, richness: 3, aroma: 4},
+  {id:12, name: 'コロンビアスプレモ', price: 410, origin: 'CO', acidity: 3, bitterness: 1, sweetness: 4, richness: 5, aroma: 4}
+] AS beans
+
+UNWIND beans AS b
+MERGE (bean:Bean {id: b.id})
+  SET bean.name = b.name, bean.price = b.price
+
+OPTIONAL MATCH (o:Origin {id: b.origin})
+FOREACH (_ IN CASE WHEN o IS NOT NULL THEN [1] ELSE [] END |
+  CREATE (bean)-[:GROWN_IN]->(o)
+)
+
+UNWIND [
+  ['酸味', b.acidity],
+  ['苦味', b.bitterness],
+  ['甘味', b.sweetness],
+  ['コク', b.richness],
+  ['香り', b.aroma]
+] AS flavorData
+MATCH (f:FlavorProfile {type: flavorData[0], level: flavorData[1]})
+CREATE (bean)-[:HAS_FLAVOR]->(f);
+
+UNWIND range(1, 10) AS uid
+CREATE (:User {id: uid, name: 'user' + toString(uid)});
+
+WITH range(1,10) AS users, range(1,12) AS beans
+UNWIND users AS uid
+WITH uid, apoc.coll.randomItems(beans, 3, false) AS purchases
+UNWIND purchases AS bid
+MATCH (u:User {id: uid}), (b:Bean {id: bid})
+CREATE (u)-[:BOUGHT]->(b);
+```
