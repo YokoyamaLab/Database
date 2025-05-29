@@ -244,6 +244,10 @@ db.review.insertMany([
 ### Neo4J　データベース構築クエリ
 
 ```Cypher
+MATCH (n)
+DETACH DELETE n;
+
+
 CREATE (:Origin {id: 'HW', name: 'ハワイ'}),
        (:Origin {id: 'JM', name: 'ジャマイカ'}),
        (:Origin {id: 'YE', name: 'イエメン'}),
@@ -257,6 +261,7 @@ UNWIND ['酸味', '苦味', '甘味', 'コク', '香り'] AS flavor
 UNWIND range(1,5) AS level
 MERGE (:FlavorProfile {type: flavor, level: level});
 
+// コーヒー豆の作成と産地とのリンク
 WITH [
   {id: 1, name: 'ハワイコナファンシー', price: 3500, origin: 'HW', acidity: 5, bitterness: 2, sweetness: 4, richness: 4, aroma: 5},
   {id: 2, name: 'ブルーマウンテンNo.1', price: 2000, origin: 'JM', acidity: 2, bitterness: 1, sweetness: 5, richness: 3, aroma: 5},
@@ -276,11 +281,14 @@ UNWIND beans AS b
 MERGE (bean:Bean {id: b.id})
   SET bean.name = b.name, bean.price = b.price
 
+WITH bean, b
 OPTIONAL MATCH (o:Origin {id: b.origin})
 FOREACH (_ IN CASE WHEN o IS NOT NULL THEN [1] ELSE [] END |
   CREATE (bean)-[:GROWN_IN]->(o)
 )
 
+// 味の特徴とのリレーション
+WITH bean, b
 UNWIND [
   ['酸味', b.acidity],
   ['苦味', b.bitterness],
@@ -291,13 +299,17 @@ UNWIND [
 MATCH (f:FlavorProfile {type: flavorData[0], level: flavorData[1]})
 CREATE (bean)-[:HAS_FLAVOR]->(f);
 
-UNWIND range(1, 10) AS uid
+
+UNWIND range(1, 30) AS uid
 CREATE (:User {id: uid, name: 'user' + toString(uid)});
 
-WITH range(1,10) AS users, range(1,12) AS beans
-UNWIND users AS uid
-WITH uid, apoc.coll.randomItems(beans, 3, false) AS purchases
-UNWIND purchases AS bid
-MATCH (u:User {id: uid}), (b:Bean {id: bid})
-CREATE (u)-[:BOUGHT]->(b);
+UNWIND range(1, 30) AS uid
+MATCH (u:User {id: uid})
+MATCH (b:Bean)
+WITH u, b, rand() AS r
+ORDER BY u.id, r
+WITH u, collect(b) AS allBeans
+WITH u, allBeans[..toInteger(rand() * 6) + 3] AS selectedBeans
+UNWIND selectedBeans AS b
+MERGE (u)-[:BOUGHT]->(b);
 ```
