@@ -159,6 +159,8 @@ INSERT INTO cart VALUES
 ## MongoDB 構築スクリプト
 
 ```JavaScript
+use fri5database;
+
 db.origin.insertMany([
 {"id_origin": "HW", "origin": "ハワイ"},
 {"id_origin": "JM", "origin": "ジャマイカ"},
@@ -236,5 +238,5 @@ db.review.insertMany([
 {"user": {"id": 9, "name": "レビュアー9", "genderAge": "M3"}, "star": 2, "keywords": ["酸味", "爽やか"], "review": "酸味と爽やかが絶妙に調和した逸品です。 しかし、後味に雑味が残る印象があります。", "timestamp": {"$date": "2021-01-15T00:00:00Z"}, "beans": "にがにがブレンド", "id_beans": 9},
 {"user": {"id": 8, "name": "レビュアー8", "genderAge": "M1"}, "star": 5, "keywords": ["マイルド", "軽やか"], "review": "過去最高のコーヒー体験でした。洗練された風味が感動を与えてくれます。", "timestamp": {"$date": "2021-05-05T00:00:00Z"}, "beans": "ブルーマウンテンピーベリー", "id_beans": 11},
 {"user": {"id": 5, "name": "レビュアー5", "genderAge": "M3"}, "star": 4, "keywords": ["苦味", "余韻"], "review": "このコーヒーは苦味が特徴で、余韻が楽しめます。", "timestamp": {"$date": "2023-11-02T00:00:00Z"}, "beans": "ブルーマウンテンピーベリー", "id_beans": 11},
-])
+]);
 ```
