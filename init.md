@@ -161,6 +161,11 @@ INSERT INTO cart VALUES
 ```JavaScript
 use fri5database;
 
+// 全コレクション削除
+db.getCollectionNames().forEach(function(collectionName) {
+    db.getCollection(collectionName).drop();
+});
+
 db.origin.insertMany([
 {"id_origin": "HW", "origin": "ハワイ"},
 {"id_origin": "JM", "origin": "ジャマイカ"},
