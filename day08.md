@@ -2,6 +2,7 @@
 
 ## 選択演算：全Doc全フィールドを返す
 
+* beansコレクションの全表示
 
 ```Cypher
 db.beans.find()
@@ -11,8 +12,8 @@ db.beans.find()
 
 * ブルマンの価格を2200円に！
 
-```Cypher
-db.コレクション名.updateOne(
+```javascript
+db.beans.updateOne(
 	{beans: "ブルーマウンテンNo.1"},
 	{$set: { price: 2200 }})
 ```
@@ -21,7 +22,7 @@ db.コレクション名.updateOne(
 
 * Aromaが3未満のものにlow_aroma: trueを付与
 
-```Cypher
+```javascript
 db.beans.find()db.beans.updateOne(
 	{aroma: {$lt: 3}, {$set: { low_aroma : true }})
 ```
@@ -30,7 +31,7 @@ db.beans.find()db.beans.updateOne(
 
 * 産地が無い豆の削除
 
-```Cypher
+```javascript
 db.beans.deleteMany({id_origin: null})
 ```
 
@@ -43,13 +44,13 @@ db.beans.deleteMany({id_origin: null})
 
 * Beansのコーヒー豆種(beans)と価格(price)のみ表示
 
-```Cypher
+```javascript
 db.beans.find({}, {beans:1, price:1})
 ```
 
 * _idを表示したくなければ
 
-```Cypher
+```javascript
 db.beans.find({}, {_id:0, beans:1, price:1})
 ```
 
@@ -57,7 +58,7 @@ db.beans.find({}, {_id:0, beans:1, price:1})
 
 * Beans, price, id_originを日本語のフィールド名に変更
 
-```Cypher
+```javascript
 db.beans.aggregate([
    {$project:{
       _id:0, 豆名: "$beans", 価格: "$price", id_origin: 1,
@@ -69,7 +70,7 @@ db.beans.aggregate([
 
 * 1000円以上のコーヒー豆
 
-```Cypher
+```javascript
 db.beans.find({price: { $gt: 1000 }})
 ```
 
@@ -77,7 +78,7 @@ db.beans.find({price: { $gt: 1000 }})
 
 * 1000円以上のコーヒー豆、beansとpriceのみ
 
-```Cypher
+```javascript
 db.beans.find({price: { $gt: 1000 }}, {beans:1, price:1})
 ```
 
@@ -85,7 +86,7 @@ db.beans.find({price: { $gt: 1000 }}, {beans:1, price:1})
 
 * 価格の降順
 
-```Cypher
+```javascript
 db.beans.find({},{beans:1,price:1}).sort({price:-1})
 ```
 
@@ -95,7 +96,7 @@ db.beans.find({},{beans:1,price:1}).sort({price:-1})
 * beansとpriceのみ表示
 * 値段昇順
 
-```Cypher
+```javascript
 db.beans.find({
    $and:[
       {aroma:{ $gt: 4 }},
@@ -107,7 +108,7 @@ db.beans.find({
 
 * 全豆の平均価格
 
-```Cypher
+```javascript
 db.beans.aggregate([
    {$group: {
       _id: null,
@@ -120,7 +121,7 @@ db.beans.aggregate([
 
 * 産地毎の平均価格
 
-```Cypher
+```javascript
 db.beans.aggregate([
    {$group: {
       _id: "$id_origin", 
@@ -134,7 +135,7 @@ db.beans.aggregate([
 * HAVINGとWHEREはSQLより直感的
 * 1000円以下の豆にのみの産地別平均価格で555円以下の産地
 
-```Cypher
+```javascript
 db.beans.aggregate([
    {$match: { price: { $lte: 1000 }}},
    {$group: {
@@ -149,7 +150,7 @@ db.beans.aggregate([
 
 * 産地をIDではなくoriginテーブルと結合して産地名を表示
 
-```Cypher
+```javascript
 db.beans.aggregate([
   {
     $lookup: {
