@@ -71,7 +71,7 @@ db.beans.aggregate([
 * 1000円以上のコーヒー豆
 
 ```javascript
-db.beans.find({price: { $gt: 1000 }})
+db.beans.find({price: { $gte: 1000 }})
 ```
 
 ## 選択演算　[例2]
@@ -79,7 +79,7 @@ db.beans.find({price: { $gt: 1000 }})
 * 1000円以上のコーヒー豆、beansとpriceのみ
 
 ```javascript
-db.beans.find({price: { $gt: 1000 }}, {beans:1, price:1})
+db.beans.find({price: { $gte: 1000 }}, {beans:1, price:1})
 ```
 
 ## 整列演算　[例]
