@@ -23,7 +23,7 @@ db.beans.updateOne(
 * Aromaが3未満のものにlow_aroma: trueを付与
 
 ```javascript
-db.beans.find()db.beans.updateOne(
+db.beans.updateOne(
 	{aroma: {$lt: 3}, {$set: { low_aroma : true }})
 ```
 
