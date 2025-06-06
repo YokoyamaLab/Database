@@ -2,12 +2,18 @@
 [戻る](index.md)
 
 ## MySQL　および　PostgreSQL　データベース構築スクリプト
+
+* データベースの切替
 ```sql
 -- データベースを本講義用のものへ切替(MySQL)
 USE fri5database;
 
 -- データベースを本講義用のものへ切替(PostgreSQL)
 \connect fri5database
+```
+
+* 初期化
+```sql
 
 -- もし同名のテーブルが存在していたら消す(リフレッシュ用)
 DROP TABLE IF EXISTS cart,blend_recipe, blender ,beans ,member ,barista,roast ,origin;
@@ -158,8 +164,14 @@ INSERT INTO cart VALUES
 
 ## MongoDB 構築スクリプト
 
+* データベースの切替
+
 ```JavaScript
 use fri5database;
+```
+
+* 初期化
+```JavaScript
 
 // 全コレクション削除
 db.getCollectionNames().forEach(function(collectionName) {
