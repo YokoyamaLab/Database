@@ -171,6 +171,8 @@ use fri5database;
 ```
 
 * 初期化
+
+
 ```JavaScript
 
 // 全コレクション削除
