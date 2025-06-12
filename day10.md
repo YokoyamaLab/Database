@@ -147,5 +147,29 @@ CREATE INDEX idx_zipcode_addr3
 
 ### MongoDB
 
+#### [Step1] テーブル定義
+
+* MongoDBはスキーマレスのためテーブルの定義は必要ありません
+
+#### [Step2] データ流し込み
+
+* UTF8を使います。
+* 手順
+  1. MondoDB Compassでfri5databaseにconnect
+  2. **Create collection**をクリックし**zipcode**を作成
+  3. **Import data**をクリックして**zipcode_UTF8.csv**を選択
+  4. 以下のような読み込み画面が出てくるので**Import**をクリック
+
+![image](https://github.com/user-attachments/assets/bc4c59b7-998d-48cc-98ea-71e002c48607)
+
+#### [Step3] インデクスの付与(zipcodeコレクションのみ)
+
+* MongoDB Compassで**Indexesタブ**で**Create Index**をクリック
+
+![image](https://github.com/user-attachments/assets/90df709a-1550-4d40-952d-c9dcce6f0aae)
+
+* **zip**に対して**1(asc)**を作成し**Create Index**をクリック
+* もう一つ**addr3**に対して**text**を作成し**Create Index**をクリック（MobgoDBにはHashが無いので代わりにTextインデクスを利用）
+
 
 
