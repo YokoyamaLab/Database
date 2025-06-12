@@ -39,15 +39,15 @@ show client_encoding;
   *  https://github.com/YokoyamaLab/Database/raw/main/zipcode_UTF8.csv
 
 ```sql
-\copy zipcode from 'c:\zipcode\zipcode_UTF8.csv' with csv;
-\copy zipcode_noindex from 'c:\zipcode\zipcode_UTF8.csv' with csv;
+\copy zipcode from 'c:\zipcode\zipcode_UTF8.csv' with csv header;
+\copy zipcode_noindex from 'c:\zipcode\zipcode_UTF8.csv' with csv header;
 ```
 
 * WSL環境の場合はcドライブは/mnt/c/にマウントされている
 
 ```sql
-\copy zipcode from '/mnt/c/zipcode/zipcode_UTF8.csv' with csv;
-\copy zipcode_noindex from '/mnt/c/zipcode/zipcode_UTF8.csv' with csv;
+\copy zipcode from '/mnt/c/zipcode/zipcode_UTF8.csv' with csv header;
+\copy zipcode_noindex from '/mnt/c/zipcode/zipcode_UTF8.csv' with csv header;
 ```
 * 
 
