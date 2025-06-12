@@ -1,4 +1,4 @@
-# Day10 インデクス
+![image](https://github.com/user-attachments/assets/2b8454e4-c125-49c9-9172-7b55b1d649ec)![image](https://github.com/user-attachments/assets/e20e6c5b-8725-4b4a-87bd-a0d3ef90cf43)# Day10 インデクス
 
 ## CSV読み込み
 
@@ -172,4 +172,66 @@ CREATE INDEX idx_zipcode_addr3
 * もう一つ**addr3**に対して**text**を作成し**Create Index**をクリック（MobgoDBにはHashが無いので代わりにTextインデクスを利用）
 
 
+## インデクスの効果測定
 
+### ### PostgreSQL / MySQL
+
+#### 効果測定1 btree & 等価検索
+
+```sql
+EXPLAIN SELECT * FROM zipcode_noindex 
+WHERE zip = 1910065;
+```
+
+```sql
+EXPLAIN SELECT * FROM zipcode 
+WHERE zip = 1910065;
+```
+
+#### 効果測定2 btree&範囲検索
+
+```sql
+EXPLAIN SELECT * FROM zipcode_noindex 
+WHERE zip < 1910065 AND zip > 1910000;
+```
+
+```sql
+EXPLAIN SELECT * FROM zipcode 
+WHERE zip < 1910065 AND zip > 1910000;
+```
+
+#### 効果測定3 hash &完全一致検索
+
+```sql
+EXPLAIN SELECT * FROM zipcode_noindex 
+WHERE addr3 ='旭が丘';
+```
+
+```sql
+EXPLAIN SELECT * FROM zipcode
+WHERE addr3 ='旭が丘';
+```
+
+#### 効果測定4 hash &部分一致検索
+
+```sql
+EXPLAIN SELECT * FROM zipcode_noindex 
+WHERE addr3 LIKE '%が%';
+```
+
+```sql
+EXPLAIN SELECT * FROM zipcode 
+WHERE addr3 LIKE '%が%';
+```
+
+#### 効果測定5 整数値のソート
+
+```sql
+EXPLAIN SELECT * FROM zipcode_noindex 
+ORDER BY zip DESC;
+```
+
+```sql
+EXPLAIN SELECT * FROM zipcode 
+ORDER BY zip DESC;
+```
