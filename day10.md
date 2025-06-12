@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/2b8454e4-c125-49c9-9172-7b55b1d649ec)![image](https://github.com/user-attachments/assets/e20e6c5b-8725-4b4a-87bd-a0d3ef90cf43)# Day10 インデクス
-
 ## CSV読み込み
 
 ### PostgreSQL
