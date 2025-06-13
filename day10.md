@@ -172,64 +172,128 @@ CREATE INDEX idx_zipcode_addr3
 
 ## インデクスの効果測定
 
-### ### PostgreSQL / MySQL
+### PostgreSQL / MySQL / MongoDB
 
 #### 効果測定1 btree & 等価検索
+
+* インデクスなし
 
 ```sql
 EXPLAIN SELECT * FROM zipcode_noindex 
 WHERE zip = 1910065;
 ```
 
+```javascript
+db.zipcode_noindex.find({zip:1910065}).explain()
+```
+
+* インデクスあり
+
 ```sql
 EXPLAIN SELECT * FROM zipcode 
 WHERE zip = 1910065;
+```
+
+```javascript
+db.zipcode.find({zip:1910065}).explain()
 ```
 
 #### 効果測定2 btree&範囲検索
 
+* インデクスなし
+
 ```sql
 EXPLAIN SELECT * FROM zipcode_noindex 
 WHERE zip < 1910065 AND zip > 1910000;
 ```
+
+```javascript
+db.zipcode_noindex.find({$and:[
+	{zip: { $lt: 1910065 }},
+	{zip: { $gt: 1910000 }}]}).explain()
+```
+
+* インデクスあり
 
 ```sql
 EXPLAIN SELECT * FROM zipcode 
 WHERE zip < 1910065 AND zip > 1910000;
 ```
 
+```javascript
+db.zipcode.find({$and:[
+	{zip: { $lt: 1910065 }},
+	{zip: { $gt: 1910000 }}]}).explain()
+```
+
 #### 効果測定3 hash &完全一致検索
+
+* インデクスなし
 
 ```sql
 EXPLAIN SELECT * FROM zipcode_noindex 
 WHERE addr3 ='旭が丘';
 ```
+
+```javascript
+db.zipcode_noindex.find({addr3:'旭が丘'}).explain()
+```
+
+* インデクスあり
 
 ```sql
 EXPLAIN SELECT * FROM zipcode
 WHERE addr3 ='旭が丘';
 ```
 
+```javascript
+db.zipcode.find({addr3:'旭が丘'}).explain()
+```
+
 #### 効果測定4 hash &部分一致検索
+
+* インデクスなし
 
 ```sql
 EXPLAIN SELECT * FROM zipcode_noindex 
 WHERE addr3 LIKE '%が%';
 ```
 
+```javascript
+db.zipcode_noindex.find({addr3 :{$regex:'が'}}).explain()
+```
+* インデクスあり
+
 ```sql
 EXPLAIN SELECT * FROM zipcode 
 WHERE addr3 LIKE '%が%';
 ```
+
+```javascript
+db.zipcodefind({addr3 :{$regex:'が'}}).explain()
+```
+
 
 #### 効果測定5 整数値のソート
 
+* インデクスなし
+
 ```sql
 EXPLAIN SELECT * FROM zipcode_noindex 
 ORDER BY zip DESC;
 ```
 
+```javascript
+db.zipcode_noindex.find().sort({zip:-1}).explain()
+```
+
+* インデクスあり
+
 ```sql
 EXPLAIN SELECT * FROM zipcode 
 ORDER BY zip DESC;
+```
+
+```javascript
+db.zipcode.find().sort({zip:-1}).explain()
 ```
