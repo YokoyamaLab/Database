@@ -12,4 +12,6 @@
 * [Day07 応用的な問い合わせ](day07.md)
 * [Day08 MongoDBの問い合わせ](day08.md)
 * [Day10 インデクス](day10.md)
+* [Day11 ビュー・トリガ・関数](day11.md)
+
 
